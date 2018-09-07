@@ -1,0 +1,21 @@
+.cell_active1{border-style: none none solid none;border-color:red; color: red}
+.cell_active2{border-style: none none solid none;border-color:rgb(235,158,4); color: rgb(235,158,4)}
+.cell_active3{border-style: none none solid none;border-color:green; color: green}
+input {width:350px;height:25px;color:gray;}
+select {width:353px;height:30px;color:gray;}
+.but_active{background-color: #1494ff;color:white}
+.but_unactive{background-color: white;color:#1494ff;}
+
+.rightSide{
+	padding-left:0px;
+	padding-top:20px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.rightSide tr{
+	height: 45px;
+}
+.rightSide table{
+	width:100%;
+}

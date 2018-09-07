@@ -1,0 +1,19 @@
+button {margin-left:20px;width:85px;height:35px;background-color: #1494ff;color: white;
+	border: 1px solid #1494ff !important;
+	-moz-border-radius:6px;-ms-border-radius:3px;-o-border-radius:3px;-webkit-border-radius:3px;border-radius:3px!important;}
+input {width:350px;height:25px;color:gray;}
+select {width:353px;height:30px;color:gray;}
+.but_active{background-color: #1494ff;color:white}
+.but_unactive{background-color: white;color:#1494ff;}
+.cell_active{padding-left:10px;border-style: none none none solid;border-color: #1494ff;}
+.center{
+	width:694px;
+	height: 580px;
+}
+
+.center tr{
+	height: 32px;
+}
+.center table{
+	width:100%;
+}

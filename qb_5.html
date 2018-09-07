@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="./css/_all-skins.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+    <div id="app_topside">
+        <topside v-bind:username="username":isshow="isshow"></topside>
+    </div>
+    <div class="main">
+        <div id="app_leftside"><leftside></leftside></div>
+            <div class="main_content_qb"  id="main" v-cloak>
+                <div class="qb_main col-md-12">
+                    <div class="col-md-12">
+                        <div class="qb_5_line"><img src="img/qb5_line.png" /></div>
+                        <div class="qb_5_title qb_main_color">钱包管理</div>
+                        <div class="clear_right_height"></div>
+                    </div>
+
+                    <div class="qb5clearheight col-md-12 qb_main_color" v-for="site in sites">
+                        <div v-bind:id="site.show_input" class="qb5_textbg">
+                            <div class="qb5_text1" v-bind:id="site.qb5_text">{{ site.name }}</div>
+                            <div class="qb5_text2">折合：<span>{{site.value}}</span>  SDA</div>
+
+                            <div class="qb5_text_default" v-if="site.isdefault == 1">(默认)</div>
+                            <div class="qb5_text_setting" v-else><a v-on:click ="setDefault(site.account)">设为默认</a></div>
+
+                            <div class="qb5_text_3" v-on:click ="reName(site.num)"><a>重命名</a></div>
+                            <!-- <div class="qb5_text_4"><a v-on:click ="linkSx(site.userAccountId,site.name,site.account)">授信</a></div> -->
+                            <div class="qb5_text_5"><a v-on:click ="changePassword(site.userAccountId)">修改密码</a></div>
+                            <div class="qb5_text_6"><a  v-on:click ="showDel(site.num)">删除</a></div>
+                        </div>
+                        <div v-bind:id="site.dis_input" class="dis_input qb5_textbg">
+                            <div class="qb5_text_input">
+                                <input class="form-control my_input_qb" v-bind:value="site.name" v-bind:id="site.my_input_qb" placeholder="请输入钱包新名称">
+                            </div>
+                            <div class="qb5_text_btn">
+                                <button type="button" class="btn btn-primary qb5_btn_color_save" v-on:click ="reName_save(site.userAccountId,site.num)">保存</button>
+                                <button type="button" class="btn btn-info qb5_btn_color_1" v-on:click ="canelName(site.num)">取消</button>
+                            </div>
+                        </div>
+                        <div v-bind:id="site.qb_delete" class="dis_input qb5_textbg">
+                            <div class="qb5_text_input">
+                                <input type="password" class="form-control my_input_qb"  v-bind:id="site.qb_del_input" placeholder="请输入六位钱包密码" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                            </div>
+                            <div class="qb5_text_btn">
+                                <button type="button" class="btn btn-primary qb5_btn_color_save" v-on:click ="delQb(site.userAccountId,site.num)">确认</button>
+                                <button type="button" class="btn btn-info qb5_btn_color_1" v-on:click ="canelDelete(site.num)">取消</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clear_right_height"></div>
+                    <div class="col-md-12">
+                        <a v-on:click="addQb_link">
+                            <div class="qb_5_add">
+                                <img src="img/qb5_add.png" /><span>添加钱包</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="qb_5_add_text qb_main_color">最多可创建6个钱包</div>
+                    <div class="clear_right_height"></div>
+                </div>
+            </div>
+    </div>
+    <div id="app_footerside">
+        <footerside></footerside>
+    </div>
+    <script type="application/javascript">
+        $(function () {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h-90);
+            // 设定主菜单选择项
+            $("#zc").addClass("active treeview");
+            // 设定子菜单选择项
+            $("#zc2").addClass("active");
+        });
+        $(window).resize(function() {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h-90);
+        });
+    </script>
+    <script src="./js/base.js"></script>
+    <script type="text/javascript" src="./js/qb_5.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+input {width:350px;height:34px;color:gray;line-height: 34px}
+.center{
+	width:570px;
+	height: 315px;
+}
+.send_btn{ background-color: white; color: #1393ff;margin-left: 10px; width: 100px}

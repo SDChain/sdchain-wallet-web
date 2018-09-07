@@ -1,0 +1,15 @@
+input {width:350px;height:34px;color:gray;}
+.bnt_vail{background-color: white;color: #1494ff}
+.cell_active1{border-style: none none solid none;border-color:red; color: red}
+.cell_active2{border-style: none none solid none;border-color:rgb(235,158,4); color: rgb(235,158,4)}
+.cell_active3{border-style: none none solid none;border-color:green; color: green}
+.cell_disable{border-style: none none solid none;border-color:lightgray; font-weight: bold; color: #1393ff}
+.but_active{background-color: #1494ff;color:white}
+.but_unactive{background-color: white;color:#1494ff;}
+.send_btn{ background-color: white; color: #1393ff;margin-left: 10px; width: 100px; font-weight: bold}
+.my_submit{ width: 100px}
+.center{
+	width:570px;
+	height: 315px;
+}
+

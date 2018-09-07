@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="./css/_all-skins.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username":isshow="isshow"></topside>
+</div>
+<div class="main" id="main" v-cloak>
+    <div id="app_leftside"><leftside></leftside></div>
+    <div class="main_content_qb">
+        <div class="qb_menu">
+            <div class="yu_title_1"><a href="jy_5.html">交易买卖</a> ></div>
+            <div class="qb_menu_2 jy_5_color">交易对</div>
+        </div>
+        <div class="clear_height"></div>
+        <div class="jy_main">
+            <div class="jy_title col-md-12">
+                <div class="jy_title_c">
+                    <div class="col-md-5">
+                        <div class="jy_gr_name jy_5_title　jy_5_color">基础货币</div>
+                        <div class="jy_gr_title_new" id="showJc">{{ myhb }}</div>
+                    </div>
+                    <div class="col-md-2"><div class="jy_gr_img"><button type="button" class="jy_change" v-on:click="changeHb()"></button></div></div>
+                    <div class="col-md-5">
+                        <div class="jy_gr_name jy_5_title　jy_5_color">对手方货币</div>
+                        <div class="jy_gr_title_c" id="showDf">{{ dfhb }}</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="jy_gr_title_s"  style="color: #706f6f;font-size: 14px;">
+                            返回
+                            <a v-on:click="linkjy_5()">交易市场</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+            <div class="jy4_detail col-md-12">
+                <div class="col-md-12">
+                    <div class="qb_5_line"><img src="img/qb5_line.png" /></div>
+                    <div class="jy_5_title jy_5_color">选择交易资产</div>
+                    <div class="clear_right_height"></div>
+                </div>
+
+                <div class="col-md-12" v-for="x in sites">
+                    <div class="col-md-3">
+                        <div class="gr_title jy_5_color" v-bind:id="x.jchb ">{{ x.currency }}</div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="jy1_sum">
+                            <button type="button" class="jy_usd_btn" v-bind:id="x.jc" v-on:click="selectJc(x.num)">
+                                选做基础货币
+                            </button>
+                            <button type="button" class="jy_usd_btn" v-bind:id="x.df" v-on:click="selectDf(x.num)">
+                                选做对方货币
+                            </button>
+                        </div>
+                    </div>
+                    <div class="qb6_clear_line"></div>
+                </div>
+
+
+
+
+                <div class="clear_right_height"></div>
+                <div class="clear_right_height"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="app_footerside">
+    <footerside></footerside>
+</div>
+<script src="./js/base.js"></script>
+<script type="text/javascript" src="./js/jy_3.js"></script>
+<script type="application/javascript">
+    $(function () {
+        var h = document.documentElement.offsetHeight
+        $(".jy_main").height(h-130);
+        // 设定主菜单选择项
+        $("#jy").addClass("active treeview");
+        // 设定子菜单选择项
+        $("#jy1").addClass("active");
+    });
+    $(window).resize(function() {
+        var h = document.documentElement.offsetHeight
+        $(".jy_main").height(h-130);
+    });
+</script>
+</body>
+</html>

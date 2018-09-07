@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册-钱包密钥</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reg_2.css">
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="lib/jquery.qrcode.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="app_topside_reg">
+    <topside_reg></topside_reg>
+</div>
+<div class="main">
+    <div class="navi">
+        <div class="navi_middle"><a onclick="window.location.href='index.html'">登录</a> > <span
+                class="active_txt qb_main_color">钱包密钥</span></div>
+    </div>
+    <div class="center col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="reg2_text fontcolor col-md-8">
+                钱包已创建，密钥信息如下。请妥善保管<br>
+                您当前的账户尚未实名认证，认证通过后，才可以交易买卖，转账等。
+            </div>
+            <div class="reg2_btn col-md-4">
+                <button type="button" class="btn btn-primary reg2_btn_color"
+                        onclick="window.open('reg_3.html','_self')">立即认证
+                </button>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="clear_right_height"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="col-md-12" style="background-color:rgb(242,242,242);">
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style">钱包地址：</div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style" id="userAccountId"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12" id="userAccountIdQR"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style_blue">公钥地址-  其他账户可以通过公钥地址转账给您</div>
+                <div class="clear_right_height"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style">私钥及二维码</div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style" id = "account"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12" id="accountQR"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 right_style_blue">任何拥有该秘钥的人都可以取出你的钱。所以务必将它保管在安全的地方。请妥善保管私钥信息。</div>
+                <div class="clear_right_height"></div>
+                <div class="clear_right_height"></div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+</div>
+<div id="app_footerside">
+    <footerside></footerside>
+</div>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/reg_2.js"></script>
+</body>
+</html>

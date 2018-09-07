@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="./css/_all-skins.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username":isshow="isshow"></topside>
+</div>
+<div class="main" id="app" v-cloak>
+    <div id="app_leftside"><leftside></leftside></div>
+    <div class="main_content_qb">
+        <div class="qb_menu">
+            <div class="yu_title_1"><a href="sz_6.html">银行卡</a> ></div>
+            <div class="qb_menu_2 qb_main_color">添加银行卡</div>
+        </div>
+        <div class="clear_height"></div>
+        <div class="qb_main">
+            <div class="qb_main col-md-12">
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left">开户名:</div>
+                    <div class="sz_main_right sz_bolder" v-if="auth >= '2'"  style="color: #5d5d5e;">{{name}}</div>
+					<div class="sz_main_right sz_bolder" v-if="auth < '2'"  style="color: #5d5d5e;">--</div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left">开户银行:</div>
+                    <div class="sz_main_right">
+                        <select class="form-control sz_input" v-model = "bank">
+                            <option value="" :disabled="true" selected>请选择银行卡信息</option>
+                            <option v-for="item in bankList">{{ item }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left">银行账号:</div>
+                    <div class="sz_main_right sz_bolder"><input v-model="cardNo" class="form-control sz_input" value=""></div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left"></div>
+                    <div class="sz7_text">{{cardNo}}</div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left">开户地址:</div>
+                    <div class="sz_main_right">
+                        <select class="form-control sz7_select" v-model = "provg" @change = "getCity(provg)">
+                            <option value="" :disabled="true" selected>请选择省份</option>
+                            <option v-for="x in provList" :value="x">{{ x.name }}</option>
+                        </select>
+                        <div class="select_mid"></div>
+                        <select class="form-control sz7_select" v-model="city">
+                            <option value="" :disabled="true" selected>请选择城市</option>
+                            <option v-for="(index, item) in cityList">{{ index.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="sz_main_left">开户支行:</div>
+                    <div class="sz_main_right">
+                        <input v-model="bankAddr" class="form-control"  placeholder="请输入开户支行">
+                    </div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div class="clear_right_height"></div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12">
+                    <div class="qb_main_right">
+                        <button type="button" class="btn btn-primary qb_btn_color" v-on:click="save">保存</button>
+                        <a class="qb_btn_qx" onclick="window.open('sz_6.html','_self')">取消并返回</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="app_footerside">
+    <footerside></footerside>
+</div>
+<script type="application/javascript">
+    $(function () {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h-140);
+        // 设定主菜单选择项
+        $("#sz").addClass("active treeview");
+        // 设定子菜单选择项
+        $("#sz3").addClass("active");
+    });
+    $(window).resize(function() {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h-140);
+    });
+</script>
+<script src="./js/base.js"></script>
+<script type="text/javascript" src="js/sz_7.js"></script>
+
+</body>
+</html>

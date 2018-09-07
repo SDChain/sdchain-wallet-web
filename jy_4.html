@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="./css/_all-skins.min.css"/>
+    <link rel="stylesheet" href="./css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username" :isshow="isshow"></topside>
+</div>
+<div class="main">
+    <div id="app_leftside">
+        <leftside></leftside>
+    </div>
+    <div class="main_content_qb" id="main" v-cloak>
+        <div class="qb_main col-md-12">
+            <div class="col-md-12">
+                <div class="qb_5_line"><img src="img/qb5_line.png"/></div>
+                <div class="jy_5_title jy_5_color">交易记录</div>
+                <div class="clear_right_height"></div>
+                <div class="col-md-12 jt4_thbg jy_5_color">
+                    <div class="jy4_th col-md-3">时间</div>
+                    <div class="jy4_th col-md-7">交易哈希</div>
+                    <div class="jy4_th col-md-2">类型</div>
+                </div>
+                <div class="clear_right_height"></div>
+                <div v-for="site in sites">
+                    <div class="col-md-12 jy_5_color">
+                        <div class="jy4_td col-md-3">{{ site.date }}</div>
+                        <div class="jy4_td col-md-7">{{ site.hash }}</div>
+                        <div class="jy4_td_type col-md-2">{{ site.type }}</div>
+                    </div>
+                    <div class="clear_right_height"></div>
+                    <div class="col-md-12" v-if="site.type == 'order'">
+                        <div class="jy4_td_zh col-md-10">{{ site.takerPaysValue}} {{ site.takerPaysCurrency}}→{{
+                            site.takerGetsCurrency}} 价格: {{site.proportion}}
+                        </div>
+                        <div class="jy4_td_type col-md-2">{{ site.takerPaysCurrency}}/{{ site.takerGetsCurrency}}</div>
+                    </div>
+                    <div class="col-md-12" v-else>
+                        <div class="jy4_td_zh col-md-10"></div>
+                        <div class="jy4_td_type col-md-2" v-if="site.type != 'TrustSet'"><span class="jy4_td_num">{{site.value }}</span> <span
+                                class="jy4_td_mon">{{site.currency }}</span></div>
+                    </div>
+                    <div class="clear_right_height" style="height: 8px"></div>
+                    <div class="jy_4_line"></div>
+                </div>
+            </div>
+            <div class="clear_right_height"></div>
+            <button type="button" class="btn btn-primary jy4_btn_color_2" v-on:click="recommend(page)">加载更多
+            </button>
+        </div>
+    </div>
+</div>
+<div id="app_footerside">
+    <footerside></footerside>
+</div>
+<script type="application/javascript">
+    $(function () {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h - 95);
+        // 设定主菜单选择项
+        $("#jy").addClass("active treeview");
+        // 设定子菜单选择项
+        $("#jy3").addClass("active");
+    });
+    $(window).resize(function () {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h - 95);
+    });
+</script>
+<script src="./js/base.js"></script>
+<script type="text/javascript" src="./js/jy_4.js"></script>
+</body>
+</html>

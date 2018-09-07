@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="./css/_all-skins.min.css"/>
+    <link rel="stylesheet" href="./css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username" :isshow="isshow"></topside>
+</div>
+<div class="main" id="main" v-cloak>
+    <div id="app_leftside">
+        <leftside></leftside>
+    </div>
+    <div class="main_content_qb">
+        <div class="qb_menu">
+            <div class="yu_title_1"><a href="qb_5.html">钱包管理</a> ></div>
+            <div class="qb_menu_2 jy_5_color">设置钱包授信</div>
+        </div>
+        <div class="clear_height"></div>
+        <div class="qb_main qb_main_color">
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <div class="panel6_title">{{ walletname }}</div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="clear_right_height"></div>
+                    <div class="col-md-8">
+
+                        <div class="gr_title1">
+                            <div class="gr_title1_text">SDA</div>
+                            <div class="gr_title1_address"></div>
+                        </div>
+
+                        <div class="gr6_sum_1">
+                            <div>
+                                <button type="button" class="btn btn-success sda_btn">已授信</button>
+                            </div>
+                        </div>
+                        <div class="qb6_clear_line"></div>
+                        <div v-for="x in sites">
+
+                            <div class="gr_title1">
+                                <div class="gr_title1_text">{{x.currency}}</div>
+                                <div class="gr_title1_address">{{x.counterparty}}</div>
+                            </div>
+
+
+                            <div class="gr6_sum_1">
+                                <div v-if="!x.trusted">
+                                    <button type="button" class="btn btn-primary usd_btn" data-toggle="modal"
+                                            data-target="#myModal" v-on:click="values(x);">授信{{x.currency}}
+                                    </button>
+                                </div>
+                                <div v-else-if="x.limit === 0">
+                                    <button type="button" class="btn btn-success sda_btn" data-toggle="modal"
+                                            data-target="#myModal2" v-on:click="values(x);">当余额为零时可以删除授信
+                                    </button>
+                                </div>
+                                <div v-else-if="x.limit > 0">
+                                    <button type="button" class="btn btn-success sda_btn" data-toggle="modal"
+                                            data-target="#myModal2" v-on:click="values(x);">已授信
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="qb6_clear_line"></div>
+                        </div>
+
+
+                        <div class="clear_right_height"></div>
+                        <div class="clear_right_height"></div>
+                        <div class="col-md-12 qb5_text_setting"><a href="qb_5.html">返回钱包管理</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="app_footerside">
+        <footerside></footerside>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 290px;">
+            <div class="modal-content">
+                <div class="modal-header qb_main_color">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    交易密码
+                </div>
+                <div style="margin-left:20px;margin-top:20px;margin-bottom:20px;align:center">
+                    <input style="width:250px;height:30px" id="picCode" type="password" v-model="password"
+                           placeholder="请输入六位阿拉伯数字" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                           onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                </div>
+                <div class="modal-footer" style="text-align: center;">
+                    <button type="button" style="width: 100px;" class="btn btn-primary" onclick="trustline()">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 290px;">
+            <div class="modal-content">
+                <div class="modal-header qb_main_color">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    交易密码
+                </div>
+                <div style="margin-left:20px;margin-top:20px;margin-bottom:20px;align:center">
+                    <input style="width:250px;height:30px" id="picCode" type="password" v-model="password"
+                           placeholder="请输入六位阿拉伯数字">
+                </div>
+                <div class="modal-footer" style="text-align: center;">
+                    <button type="button" style="width: 100px;" class="btn btn-primary" onclick="canceltrustline()">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h - 140);
+            // 设定主菜单选择项
+            $("#zc").addClass("active treeview");
+            // 设定子菜单选择项
+            $("#zc2").addClass("active");
+        });
+        $(window).resize(function () {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h - 140);
+        });
+
+    </script>
+    <script src="./js/base.js"></script>
+    <script type="text/javascript" src="./js/qb_6.js"></script>
+</body>
+</html>

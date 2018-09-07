@@ -1,0 +1,14 @@
+button {width:85px;height:35px;background-color: #1494ff;color: white;
+	border: 1px solid #1494ff !important;
+	-moz-border-radius:6px;-ms-border-radius:3px;-o-border-radius:3px;-webkit-border-radius:3px;border-radius:3px!important;}
+input {width:350px;height:25px;color:gray;}
+.center{
+	width:100%; clear: both; margin-top: 100px;
+}
+.fontcolor{color: #2573f0}
+.reg2_btn_color{background-color: #2573f0; font-weight: bolder; width: 112px; height: 34px; float: right; margin: 0px}
+.reg2_text{ line-height: 30px}
+.reg2_btn{ text-align: right; padding-right:0px; padding-top: 10px}
+.toast-info{
+	background: #3bc000;
+}

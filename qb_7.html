@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="./css/_all-skins.min.css"/>
+    <link rel="stylesheet" href="./css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username" :isshow="isshow"></topside>
+</div>
+<div class="main">
+    <div id="app_leftside">
+        <leftside></leftside>
+    </div>
+    <div class="main_content_qb">
+        <div class="qb_menu">
+            <div class="yu_title_1"><a href="qb_5.html">钱包管理</a> ></div>
+            <div class="qb_menu_2 jy_5_color">添加钱包</div>
+        </div>
+        <div class="clear_height"></div>
+        <div class="qb_main">
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <div class="panel7_title jy_5_color">您可以使用以下方式来添加新的钱包</div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="clear_right_height"></div>
+                    <div class="col-md-8">
+                        <a href="qb_1.html">
+                            <div class="qb_6_add ">
+                                <div class="qb6_num">1</div>
+                                <span>创建新钱包</span>
+                                <div class="qb6_text">系统将自动创建新的钱包信息，请妥善保存新钱包的公钥、私钥信息</div>
+                            </div>
+                        </a>
+                        <div class="clear_right_height"></div>
+                        <a href="qb_2.html">
+                            <div class="qb_6_add">
+                                <div class="qb6_num">2</div>
+                                <span>导入已有钱包</span>
+                                <div class="qb6_text_2">您可以导入已有的钱包私钥，需要确保该钱包未被其他用户使用</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="app_footerside">
+        <footerside></footerside>
+    </div>
+    <script type="application/javascript">
+        $(function () {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h - 140);
+            // 设定主菜单选择项
+            $("#zc").addClass("active treeview");
+            // 设定子菜单选择项
+            $("#zc2").addClass("active");
+        });
+        $(window).resize(function () {
+            var h = document.documentElement.offsetHeight
+            $(".qb_main").height(h - 140);
+        });
+    </script>
+    <script src="./js/base.js"></script>
+</body>
+</html>

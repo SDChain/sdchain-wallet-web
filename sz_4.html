@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>联系人</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="./css/_all-skins.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script src="lib/toastr.js" type="text/javascript"></script>
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+    <div id="app_topside">
+		<topside v-bind:username="username":isshow="isshow"></topside>
+	</div>
+    <div class="main" id="app" v-cloak>
+			<div id="app_leftside"><leftside></leftside></div>
+            <div class="main_content_qb">
+
+                    <div class="qb_main col-md-12">
+                        <div class="col-md-12">
+                            <div class="qb_5_line"><img src="img/qb5_line.png" /></div>
+                            <div class="jy_5_title qb_main_color">联系人</div>
+                            <div class="sz_4_add"><button type="button" class="btn btn-primary sz4_btn_color_2" onclick="window.open('sz_5.html', '_self')">添加联系人</button></div>
+                            <div class="clear_right_height"></div>
+                            <div class="sz4_bg col-md-12">
+                                <div class="jy4_th col-md-2 qb_main_color">联系人</div>
+                                <div class="jy4_th col-md-8 qb_main_color">账户</div>
+                                <div class="jy4_th col-md-2 qb_main_color">操作</div>
+                            </div>
+                            <div class="col-md-12" v-for="(row, index) in relationList" v-if="(pageNum - 1) * pageRecNum<= index && index < (pageNum * pageRecNum)">
+                                <div class="clear_right_height"></div>
+                                <div class="sz4_td col-md-2" v-if="row.realName==null" >--</div>
+								<div class="sz4_td col-md-2" v-else>{{row.realName}}</div>
+                                <div class="sz4_td_m col-md-8">
+                                    <div class="sz4_td_num qb_main_color">{{row.userName}}</div>
+                                    <div class="sz4_td_zh">
+                                        钱包地址：{{row.account}}
+                                    </div>
+                                </div>
+                                <div class="jy4_td_type col-md-2">
+                                    <div class="sz4_td_edit"><a  v-on:click="edit(row.userName,row.userRelationId,row.memo)">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a v-on:click="del(row.userRelationId)">删除</a></div>
+                                    <div class="sz4_td_zz">
+                                        <button type="button" class="btn btn-primary sz4_btn_color_2" v-on:click="c2c(row.account,row.userName)" >C2C转账</button>
+                                    </div>
+                                </div>
+								<div class="clear_right_height" style="padding-top:1px;"><hr></div>
+                            </div>
+                            <div class="clear_right_height"></div>
+							<ul class="pagination">
+								<li><a href="#" v-on:click="pageUp()">&laquo;</a></li>
+								<li v-for="num in pageCode"><a href="#" v-on:click="pageTo(num)">{{num}}</a></li>
+								<li><a href="#" v-on:click="pageDown()">&raquo;</a></li>
+							    <!--第<input type="number" style = "height:38px;width:40px;" v-model="pageNum"/>页-->
+							</ul>
+						</div>
+                    </div>
+
+            </div>
+    </div>
+    <div id="app_footerside">
+		<footerside></footerside>
+	</div>
+
+	<script src="./js/base.js"></script>
+	<script type="text/javascript" src="js/sz_4.js"></script>
+	<script>
+    $(window).resize(function() {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h-100);
+    });
+	</script>
+</body>
+</html>

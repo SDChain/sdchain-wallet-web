@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="./css/_all-skins.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main_custrom.css">
+    <link href="lib/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="lib/toastr.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="lib/jquery.qrcode.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/reg_2.css">
+</head>
+<body class="skin-blue sidebar-mini fixed sidebar-mini-expand-feature">
+<div id="app_topside">
+    <topside v-bind:username="username":isshow="isshow"></topside>
+</div>
+    <div class="main" id="app" v-cloak>
+	    <div id="app_leftside">
+			<leftside></leftside>
+		</div>
+        <div class="main_content_qb">
+                <div class="qb_menu">
+                    <div class="yu_title_1"><a href="qb_5.html">钱包管理</a> ></div>
+                    <div class="qb_menu_2 jy_5_color">钱包密钥</div>
+                </div>
+                <div class="clear_height"></div>
+                <div class="qb_main">
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <div class="panel6_title qb_main_color">{{ qb_name }}</div>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="clear_right_height"></div>
+                            <div class="col-md-12">
+                                <div class="col-md-12 right_style jy_5_color">钱包地址：</div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 right_style" id="userAccountId"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12" id="userAccountIdQR"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 right_style_blue">公钥地址-  其他账户可以通过公钥地址转账给您</div>
+                                <div class="clear_right_height"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 right_style jy_5_color">私钥及二维码</div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 right_style" id = "account"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12" id="accountQR"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 right_style_blue">任何拥有该秘钥的人都可以取出你的钱。所以务必将它保管在安全的地方。请妥善保管私钥信息。</div>
+                                <div class="clear_right_height"></div>
+                                <div class="clear_right_height"></div>
+                                <div class="col-md-12 qb5_text_setting"><button type="button" class="btn btn-primary qb8_btn_color" onclick="window.location.href='qb_5.html'">查看我的钱包</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+<div id="app_footerside">
+    <footerside></footerside>
+</div>
+<script type="application/javascript">
+    $(function () {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h-140);
+        // 设定主菜单选择项
+        $("#zc").addClass("active treeview");
+        // 设定子菜单选择项
+        $("#zc2").addClass("active");
+    });
+    $(window).resize(function() {
+        var h = document.documentElement.offsetHeight
+        $(".qb_main").height(h-140);
+    });
+</script>
+
+<script src="./js/base.js"></script>
+<script src="./js/qb_8.js"></script>
+</body>
+</html>
